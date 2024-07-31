@@ -1,13 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
     <script>
-        
+      class List {
+        //Every class has constructor and we initialized head node
+        constructor(data) {
+          this.head = {
+            value: data,
+            next: null,
+          };
+          //First time we do not have any tail node so make your head node as tail
+          this.tail = this.head;
+
+          //For Node count
+          this.count = 1;
+        }
+
+        // Add new node to head
+        appendNode(newData) {
+          // Create a object as new node
+          let newNode = {
+            value: newData,
+            next: null,
+          };
+          // No From 17th line we can say our tail is head; Now we need to append newNode to tail.next
+          // Head node is constant/still we only need to change from tail part
+          this.tail.next = newNode;
+          this.tail = newNode;
+          // Every newNode increase count++
+          this.count++;
+        }
+
+        // Travel through linked list
+        traverseList() {
+          let counter = 0;
+          let currentNode = this.head;
+
+          while (counter < this.count) {
+            // console.warn(currentNode);
+            currentNode = currentNode.next;
+            counter++;
+          }
+        }
+
+        // Delete Node
+        deleteNode(index) {
+          let counter = 1;
+          let prevNode = this.head;
+
+          // If we want to delete head then no need of loop
+          if (index === 1) {
+            prevNode = this.head.next;
+          } else {
+            // Counter/loop run till 2nd node
+            while (counter < index - 1) {
+              prevNode = prevNode.next;
+              counter++;
+            }
+            //After ending loop we are at before our desired index-1 node
+
+            // Now take node index+1 and store in nextNode
+            let nextNode = prevNode.next.next;
+            prevNode.next = nextNode;
+          }
+        }
+
+        //Insert Node
+        insertNode(index, value) {
+          let currentNode = this.head;
+          let counter = 1;
+          while (counter < index) {
+            counter++;
+            currentNode = currentNode.next;
+          }
+          let nextNode = currentNode.next;
+
+          //Now create new node and insert
+          currentNode.next = {
+            value: value,
+            next: nextNode,
+          };
+        }
+
+        //SearchNode
+        searchNode(data){
+            let result = undefined;
+            let currentNode = this.head;
+            // let loop = true;
+            while(currentNode){
+                // console.log(currentNode)
+                // currentNode = currentNode.next;
+                // loop = !!currentNode
+
+                if(currentNode.value === data){
+                    // loop = false
+                    result = currentNode;
+                    // alert(`Value ${data} found `)
+                    break;
+                }else{
+                    currentNode = currentNode.next;
+                }
+            }
+            console.warn(result)
+        }
+      
+    
+    }
+
+
+
+      let list = new List(100);
+
+      list.appendNode(200);
+      list.appendNode(300);
+      list.appendNode(400);
+      list.appendNode(500);
+
+      list.traverseList();
+
+      // list.deleteNode(3)
+      list.insertNode(1, 150);
+
+      list.searchNode(400)
+
+      console.warn(list);
     </script>
-</body>
+  </head>
+  <body>
+    <h1>Linked-List</h1>
+  </body>
 </html>
