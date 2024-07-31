@@ -48,13 +48,19 @@
 
         // Delete Node
         deleteNode(index) {
-          let counter = 1;
-          let prevNode = this.head;
+          // If the list is empty or the index is out of bounds
+          if (!this.head || index < 1 || index > this.count) {
+            console.log("Index out of bounds");
+            return;
+          }
 
           // If we want to delete head then no need of loop
           if (index === 1) {
             prevNode = this.head.next;
+            this.count--;
           } else {
+            let counter = 1;
+            let prevNode = this.head;
             // Counter/loop run till 2nd node
             while (counter < index - 1) {
               prevNode = prevNode.next;
@@ -62,10 +68,13 @@
             }
             //After ending loop we are at before our desired index-1 node
 
+            // Update the next pointer to skip the node to be deleted ; prevNode.next =  prevNode.next.next
             // Now take node index+1 and store in nextNode
             let nextNode = prevNode.next.next;
             prevNode.next = nextNode;
           }
+          // Decrement the count of nodes
+          this.count--;
         }
 
         //Insert Node
@@ -86,31 +95,27 @@
         }
 
         //SearchNode
-        searchNode(data){
-            let result = undefined;
-            let currentNode = this.head;
-            // let loop = true;
-            while(currentNode){
-                // console.log(currentNode)
-                // currentNode = currentNode.next;
-                // loop = !!currentNode
+        searchNode(data) {
+          let result = undefined;
+          let currentNode = this.head;
+          // let loop = true;
+          while (currentNode) {
+            // console.log(currentNode)
+            // currentNode = currentNode.next;
+            // loop = !!currentNode
 
-                if(currentNode.value === data){
-                    // loop = false
-                    result = currentNode;
-                    // alert(`Value ${data} found `)
-                    break;
-                }else{
-                    currentNode = currentNode.next;
-                }
+            if (currentNode.value === data) {
+              // loop = false
+              result = currentNode;
+              // alert(`Value ${data} found `)
+              break;
+            } else {
+              currentNode = currentNode.next;
             }
-            console.warn(result)
+          }
+          console.warn(result);
         }
-      
-    
-    }
-
-
+      }
 
       let list = new List(100);
 
@@ -124,7 +129,7 @@
       // list.deleteNode(3)
       list.insertNode(1, 150);
 
-      list.searchNode(400)
+      list.searchNode(400);
 
       console.warn(list);
     </script>
