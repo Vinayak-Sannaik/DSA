@@ -26,10 +26,18 @@
             value: newData,
             next: null,
           };
-          // No From 17th line we can say our tail is head; Now we need to append newNode to tail.next
-          // Head node is constant/still we only need to change from tail part
-          this.tail.next = newNode;
-          this.tail = newNode;
+
+          // If the list is empty, set the head and tail to the new node
+          if (this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+          } else {
+            // No From 17th line we can say our tail is head; Now we need to append newNode to tail.next
+            // Head node is constant/still we only need to change from tail part
+            this.tail.next = newNode;
+            this.tail = newNode;
+          }
+
           // Every newNode increase count++
           this.count++;
         }
