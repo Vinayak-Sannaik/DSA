@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indirect Recursion</title>
+    <script>
+      function buyApple(amount) {
+        if (amount > 0) {
+          byMoreApple(amount);
+        } else {
+          console.warn(
+            `not have enough money to buy APPLE, Money left ${amount} RS`
+          );
+          console.warn(`Total APPLE bought ${totalApple}`);
+        }
+      }
+
+      function byMoreApple(amount) {
+        totalApple = totalApple + 1;
+        //Reduce amount and call to buyApple
+        // amount = amount-10
+        buyApple(amount - 10);
+      }
+
+      let money = 100;
+      let totalApple = 0;
+      buyApple(money);
+    </script>
+  </head>
+  <body>
+    <h1>Recursion types</h1>
+  </body>
+</html>
