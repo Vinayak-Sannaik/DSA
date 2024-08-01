@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head and Tail Recursion</title>
+
+    <script>
+
+        function test(data){
+            if(data > 0){
+                console.warn(`Before function call (HEAD RECURSION) ${data}`);
+                test(data-1)
+                console.warn(`After function call (TAIL RECURSION) ${data}`)
+            }
+        }
+
+        let data = 5;
+        test(data)
+
+    </script>
+</head>
+<body>
+    <h1>Tail Recursion</h1>
+        <p>Due Structure of call stack <b>[LIFO and FIFO]</b> we will get completely different output when you console before and after</p>
+</body>
+</html>
